@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Mantenimiento Libros</title>
+</head>
+<body>
+	
+<div class="col-4"></div>
+    <div class="container col-4 mt-4">
+		<div class="col-4"></div>
+		<h1 class="mb-2">Actualizar Libro</h1>
+		<div class="alert alert-success alert-dismissible fade show mt-2 mb-2" role="alert" th:if="${mensaje != null}" th:text="${mensaje}">
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		<form method="POST" th:action="@{/libros/save}" th:object="${libros}">
+			<div class="mb-3">
+		  		<label for="code" class="form-label">Codigo</label>
+		  		<input type="text" class="form-control" id="codigo" th:value="${libros.codigo}" th:field="*{codigo}" readonly>
+			</div>
+			<div class="mb-3">
+		  		<label for="title" class="form-label">Titulo</label>
+		  		<input type="text" class="form-control" id="titulo" th:value="${libros.titulo}" th:field="*{titulo}">
+			</div>
+			<div class="mb-3">
+		  		<label for="descripcion" class="form-label">Descripcion</label>
+		  		<input type="text" class="form-control" id="descripcion" th:value="${libros.descripcion}" th:field="*{descripcion}">
+			</div>
+			<div class="mb-3">
+		  		<label for="date" class="form-label">Fecha de publicacion</label>
+		  		<input type="date" class="form-control" id="fecha" th:value="${libros.fecha}" th:field="*{fecha}">
+			</div>
+  			<div class="form-group col-md-6">
+  				<label for="author">Autor</label>
+  				<select id="author" class="form-control" th:field="${libros.autor}">
+  					<option th:value="-1" th:text="Seleccione"></option>
+  					<option th:each="a : ${autores}"
+  			        		th:value="${a.id_autor}"
+  			        		th:text="${a.nombre}">
+  					</option>
+  				</select>
+  			</div>
+			
+			<div class="form-group col-md-6">
+  				<label for="author">Genero</label>
+  				<select id="author" class="form-control" th:field="${libros.genero}">
+  					<option th:value="-1" th:text="Seleccione"></option>
+  					<option th:each="g : ${generos}"
+  			        		th:value="${g.id_genero}"
+  			        		th:text="${g.nombre}">
+  					</option>
+  				</select>
+  			</div>
+			<button type="submit" class="btn btn-success">Actualizar</button>
+			
+		</form>
+	</div>
+<div class="col-4"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</html>
